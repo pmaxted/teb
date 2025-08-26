@@ -481,8 +481,8 @@ if __name__ == "__main__":
     # Spectral energy distributions
     ns = flat_samples.shape[0]
     nw = len(wave)
-    flux_ = np.zeros([nw, ns])
-    frat_ = np.zeros([nw, ns])
+    flux_ = np.zeros([nw, 100])
+    frat_ = np.zeros([nw, 100])
     # Use 100 random samples from the emcee chain to compute std dev
     for i in np.random.choice(ns, 100):
         f_ = lnprob(flat_samples[i,:], *args, return_flux=True)
