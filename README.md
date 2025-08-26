@@ -56,6 +56,11 @@ with the multi-cone VO service in topcat to collect photometric data for
 this sample CALSPEC stars excluding those with known variability > 0.5%. 
 (topcat - https://www.star.bristol.ac.uk/mbt/topcat/)
  
+To add filters used for flux ratio measurements only, use calspec.py with
+the option "-n". 
+
+For further details, see the built-in help for calspec:
+
 ```bash
   python3 calspec.py --help
 ```
