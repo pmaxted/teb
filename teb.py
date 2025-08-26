@@ -215,7 +215,7 @@ if __name__ == "__main__":
     params = list(param_dict.values())
     args = (param_dict, config_dict, flux2mag, flux_ratio_priors, star_data)
     lnlike = lnprob(params, *args,  verbose=True)[0]
-    print('Initial log-likelihood = {:0.2f}'.format(lnlike))
+    print(' Initial log-likelihood = {:0.2f}'.format(lnlike))
     print('',flush=True)
 
     ############################################################
@@ -484,8 +484,8 @@ if __name__ == "__main__":
     flux_ = np.zeros([nw, 100])
     frat_ = np.zeros([nw, 100])
     # Use 100 random samples from the emcee chain to compute std dev
-    for i in np.random.choice(ns, 100):
-        f_ = lnprob(flat_samples[i,:], *args, return_flux=True)
+    for i,j in enumerate(np.random.choice(ns, 100)):
+        f_ = lnprob(flat_samples[j,:], *args, return_flux=True)
         flux_[:,i] = f_[1]
         frat_[:,i] = f_[3]/f_[2]
     flux_mean = flux_.mean(axis=1)
