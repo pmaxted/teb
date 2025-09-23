@@ -216,7 +216,7 @@ l += fr'$\pm {m["TEFFSYS1"]:.0f}$ (sys) \\'
 print(l)
 t = chain["teff2"]
 l = fr'$T_{{\rm eff,2}}$ [K] & ${t.mean():.0f} \pm {t.std():.0f}$ (rnd) '
-l += fr'$\pm {m["TEFFSYS1"]:.0f}$ (sys) \\'
+l += fr'$\pm {m["TEFFSYS2"]:.0f}$ (sys) \\'
 print(l)
 t = chain["theta_1"]
 err = t.std()
