@@ -385,20 +385,20 @@ class Flux2mag:
         # Process colors_data
         color_types = [s.tag for s in self.obs_col.values()]
         if len(color_types) > 0:
-            b_ = -2.5*np.log10(convolve(wave,flux,self.uvby['b'](wave)))
-            y_ = -2.5*np.log10(convolve(wave,flux,self.uvby['y'](wave)))
+            b_ = -2.5*np.log10(convolve(wave,flux,self.uvby['b']))
+            y_ = -2.5*np.log10(convolve(wave,flux,self.uvby['y']))
             d = self.filters['by']  
             zp_by = ufloat(d['zp'], d['zp_err'])
             s_ = ufloat(0, d['sigma_x'])   # Scatter around zp calibration
             by_ = b_ - y_ + zp_by + s_
             if ('m1' in color_types) or ('c1' in color_types):
-                v_ = -2.5*np.log10(convolve(wave,flux,self.uvby['v'](wave)))
+                v_ = -2.5*np.log10(convolve(wave,flux,self.uvby['v']))
                 d = self.filters['m1']
                 zp_m1 = ufloat(d['zp'], d['zp_err'])
                 s_ = ufloat(0, d['sigma_x'])  # Scatter around zp calibration
                 m1_ = (v_ - b_) - (b_ - y_) + zp_m1 + s_
             if ('c1' in color_types):
-                u_ = -2.5*np.log10(convolve(wave,flux,self.uvby['u'](wave)))
+                u_ = -2.5*np.log10(convolve(wave,flux,self.uvby['u']))
                 d = self.filters['c1']
                 zp_c1 = ufloat(d['zp'], d['zp_err'])
                 s_ = ufloat(0, d['sigma_x'])  # Scatter around zp calibration
