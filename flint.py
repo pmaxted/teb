@@ -409,7 +409,7 @@ def interpolate_logg(s, params, source, cache_path, reload, binning):
             spectra.append(SourceSpectrum.from_file(model_file))
         except FileNotFoundError:
             print(f"* Downloading {source} model: Teff={teff},"
-                  f" logg={round(logg_step,1)}, [M/H]={m_h}")
+                  f" logg={round(logg_step,1)}, [M/H]={round(m_h, 1)}")
             logg_model = load_spectrum_as_table(s, logg_params, source)
             model_file, model_file_0 = make_pathname(cache_path, logg_params, source, binning)
             process_spectrum(logg_model, model_file, model_file_0, reload, binning)
@@ -462,7 +462,7 @@ def interpolate_m_h(s, params, source, cache_path, reload, binning):
             spectra.append(SourceSpectrum.from_file(model_file))
         except FileNotFoundError:
             print(f"* Downloading {source} model:"
-                  f"Teff={teff}, logg={logg}, [M/H] ={m_h_step}")
+                  f"Teff={teff}, logg={logg}, [M/H] ={round(m_h, 1)}")
             m_h_model = load_spectrum_as_table(s, m_h_params, source)
             model_file, model_file_0 = make_pathname(cache_path, m_h_params,
                                                      source, binning)
@@ -526,7 +526,7 @@ class ModelSpectrum(SourceSpectrum):
         # If file exists (i.e. already downloaded and binned) and you don't want to re-download it
         if os.path.isfile(model_file) and not reload:
             print(f'* Loading cached {source} model: '
-                  f'Teff={teff}, logg={logg}, [M/H]={m_h}, binning={binning}')
+                  f'Teff={teff}, logg={logg}, [M/H]={round(m_h, 1)}, binning={binning}')
             return SourceSpectrum.from_file(model_file)
 
         # Get un-binned file if already downloaded
@@ -563,7 +563,7 @@ class ModelSpectrum(SourceSpectrum):
                     # [M/H] matches available models --> no interpolation needed
                     if valid_m_h(params, source):
                         print(f'* Downloading {source} model: Teff={teff},'
-                              f'logg={logg}, [M/H]={m_h}')
+                              f'logg={logg}, [M/H]={round(m_h, 1)}')
                         model = load_spectrum_as_table(s, params, source)
                         process_spectrum(model, model_file, model_file_0,
                                          reload, binning)
